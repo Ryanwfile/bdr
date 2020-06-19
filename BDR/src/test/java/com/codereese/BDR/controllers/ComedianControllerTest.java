@@ -21,4 +21,11 @@ public class ComedianControllerTest {
         ResponseEntity<Comedian> comedianResponseEntity = testRestTemplate.getForEntity("/comedians/1", Comedian.class);
         assertEquals(1,comedianResponseEntity.getBody().getComedianId());
     }
+
+//    @Test
+//    @Sql("/comedian_table_populate.sql")
+//    public void getComedians(){
+//        ResponseEntity<Comedian> comedianResponseEntity = testRestTemplate.getForEntity("/comedians", Comedian.class);
+//        assertEquals(1,comedianResponseEntity.getBody().);
+//    }
 }
