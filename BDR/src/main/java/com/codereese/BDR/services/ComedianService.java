@@ -5,6 +5,7 @@ import com.codereese.BDR.models.Comedian;
 import com.codereese.BDR.repos.ComedianRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -22,5 +23,9 @@ public class ComedianService {
     public Comedian getComedianById(Long id) throws ComedianNotFoundException {
         Comedian comedian = comedianRepo.findById(id).orElseThrow(() -> new ComedianNotFoundException(id));
         return comedian;
+    }
+
+    public Comedian createComedian(@RequestBody Comedian comedian) {
+        return comedianRepo.save(comedian);
     }
 }

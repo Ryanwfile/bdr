@@ -2,6 +2,7 @@ package com.codereese.BDR.models;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.List;
 
 @Entity
 @Table(name="comedians", schema = "mysql")
@@ -12,17 +13,17 @@ public class Comedian {
     private Long comedianId;
     private String first_name;
     private String last_name;
-    private HashMap mediaHashMap;
+    private String img_src;
 
     public Comedian(){
         super();
     }
 
-    public Comedian(Long comedianId, String first_name, String last_name, HashMap mediaHashMap) {
+    public Comedian(Long comedianId, String first_name, String last_name, String img_src) {
         this.comedianId = comedianId;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.mediaHashMap = mediaHashMap;
+        this.img_src = img_src;
     }
 
     public Comedian(Long comedianId, String first_name, String last_name) {
@@ -59,12 +60,12 @@ public class Comedian {
         this.last_name = last_name;
     }
 
-    public HashMap getMediaHashMap() {
-        return mediaHashMap;
+    public String getImg_src() {
+        return img_src;
     }
 
-    public void setMediaHashMap(HashMap mediaHashMap) {
-        this.mediaHashMap = mediaHashMap;
+    public void setImg_src(String img_src) {
+        this.img_src = img_src;
     }
 
     @Override
@@ -73,7 +74,7 @@ public class Comedian {
                 "comedianId=" + comedianId +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
-                ", mediaHashMap=" + mediaHashMap +
+                ", img_src='" + img_src + '\'' +
                 '}';
     }
 }
