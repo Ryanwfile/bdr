@@ -32,4 +32,9 @@ public class ComedianController {
     public Comedian createComedian(@RequestBody Comedian comedian) {
         return comedianService.createComedian(comedian);
     }
+
+    @PutMapping("/comedians/{id}")
+    public Comedian updateComedian(@PathVariable(value="id")Long comedianId, @RequestBody Comedian comedianDetails) throws ComedianNotFoundException {
+        return comedianService.updateComedianById(comedianId, comedianDetails);
+    }
 }

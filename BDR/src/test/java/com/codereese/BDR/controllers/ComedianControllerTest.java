@@ -11,24 +11,23 @@ import org.springframework.test.context.jdbc.Sql;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Sql("/comedian_table_populate.sql")
 public class ComedianControllerTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
 
     @Test
-    @Sql("/comedian_table_populate.sql")
     public void getComedianById(){
         ResponseEntity<Comedian> comedianResponseEntity = testRestTemplate.getForEntity("/comedians/1", Comedian.class);
         assertEquals(1,comedianResponseEntity.getBody().getComedianId());
     }
 
     @Test
-    @Sql("/comedian_table_populate.sql")
     public void getComediansLength(){
         ResponseEntity<Comedian[]> comedianResponseEntity = testRestTemplate.getForEntity("/comedians", Comedian[].class);
         Comedian[] comedians = comedianResponseEntity.getBody();
-        assertEquals(5, comedians.length);
+        assertEquals(2, comedians.length);
     }
 
     @Test
@@ -43,4 +42,15 @@ public class ComedianControllerTest {
 
         assertNotNull(comedianResponseEntity.getBody().getComedianId());
     }
+
+//    @Test
+//    public void updateComedian(){
+//        Comedian comedian = new Comedian();
+//        comedian.setImg_src("I am an updated imgsrc");
+//        comedian.setFirst_name("updated");
+//        comedian.setLast_name("Mcgoo");
+//
+//        HttpEntity<Comedian> comedianHttpEntity = new HttpEntity<>(comedian);
+//        ResponseEntity<Comedian> comedianResponseEntity = testRestTemplate.put("/comedians/1", comedianHttpEntity, Comedian.class);
+//    }
 }
