@@ -4,6 +4,7 @@ import com.codereese.BDR.exceptions.ComedianNotFoundException;
 import com.codereese.BDR.models.Comedian;
 import com.codereese.BDR.repos.ComedianRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,5 +38,11 @@ public class ComedianService {
         comedian.setImg_src(comedianDetails.getImg_src());
         Comedian updatedComedian = comedianRepo.save(comedian);
         return updatedComedian;
+    }
+
+    public ResponseEntity<?> deleteComedianById(@PathVariable(value="id")Long comedianId) throws ComedianNotFoundException {
+        Comedian comedian = comedianRepo.findById(comedianId).orElseThrow(()-> new ComedianNotFoundException(comedianId));
+        comedianRepo.delete(comedian);
+        return ResponseEntity.ok().build();
     }
 }

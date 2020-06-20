@@ -5,6 +5,7 @@ import com.codereese.BDR.models.Comedian;
 import com.codereese.BDR.repos.ComedianRepo;
 import com.codereese.BDR.services.ComedianService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -36,5 +37,10 @@ public class ComedianController {
     @PutMapping("/comedians/{id}")
     public Comedian updateComedian(@PathVariable(value="id")Long comedianId, @RequestBody Comedian comedianDetails) throws ComedianNotFoundException {
         return comedianService.updateComedianById(comedianId, comedianDetails);
+    }
+
+    @DeleteMapping("/comedians/{id}")
+    public ResponseEntity<?> deleteComedian(@PathVariable(value="id")Long comedianId) throws ComedianNotFoundException {
+        return comedianService.deleteComedianById(comedianId);
     }
 }

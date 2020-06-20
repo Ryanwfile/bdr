@@ -35,7 +35,10 @@ public class Comedian {
     public Comedian(Long comedianId) {
         this.comedianId = comedianId;
     }
-
+    /*****************************JUST ADDED******************************/
+//    public Comedian(String first_name, String last_name, String img_src){
+//        super();
+//    }
     public Long getComedianId() {
         return comedianId;
     }

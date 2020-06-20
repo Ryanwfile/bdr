@@ -8,29 +8,33 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.web.client.RestClientException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Sql("/comedian_table_populate.sql")
 public class ComedianControllerTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
 
     @Test
+    @Sql("/getComedianByIdTest.sql")
     public void getComedianById(){
         ResponseEntity<Comedian> comedianResponseEntity = testRestTemplate.getForEntity("/comedians/1", Comedian.class);
         assertEquals(1,comedianResponseEntity.getBody().getComedianId());
     }
 
     @Test
+    @Sql("/comedian_table_populate.sql")
     public void getComediansLength(){
         ResponseEntity<Comedian[]> comedianResponseEntity = testRestTemplate.getForEntity("/comedians", Comedian[].class);
         Comedian[] comedians = comedianResponseEntity.getBody();
-        assertEquals(2, comedians.length);
+        assertEquals(3, comedians.length);
     }
 
     @Test
+    @Sql("/createComedianTest.sql")
     public void saveComedian(){
         Comedian comedian = new Comedian();
         comedian.setFirst_name("Jim");
@@ -43,6 +47,13 @@ public class ComedianControllerTest {
         assertNotNull(comedianResponseEntity.getBody().getComedianId());
     }
 
+    @Test
+    public void updateComedianReturnsTrue(){
+        Comedian updatedComedian = new Comedian();
+        updatedComedian.setComedianId(1l);
+
+    }
+
 //    @Test
 //    public void updateComedian(){
 //        Comedian comedian = new Comedian();
@@ -51,6 +62,11 @@ public class ComedianControllerTest {
 //        comedian.setLast_name("Mcgoo");
 //
 //        HttpEntity<Comedian> comedianHttpEntity = new HttpEntity<>(comedian);
-//        ResponseEntity<Comedian> comedianResponseEntity = testRestTemplate.put("/comedians/1", comedianHttpEntity, Comedian.class);
+//
+//        try {
+//            ResponseEntity<Comedian> comedianResponseEntity = testRestTemplate.put("/comedians/6", comedianHttpEntity);
+//        } catch (RestClientException e) {
+//            e.printStackTrace();
+//        }
 //    }
 }
