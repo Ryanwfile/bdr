@@ -23,17 +23,17 @@ public class ComedianController {
     public List<Comedian> getAllComedians(){
         return comedianService.getComedians();
     }
-
+    @CrossOrigin("http://localhost:3000")
     @GetMapping("comedians/{id}")
     public Comedian getComedianById(@PathVariable(value= "id") Long comedianId) throws ComedianNotFoundException {
         return comedianService.getComedianById(comedianId);
     }
-
+    @CrossOrigin("http://localhost:3000")
     @PostMapping("/comedians")
     public Comedian createComedian(@RequestBody Comedian comedian) {
         return comedianService.createComedian(comedian);
     }
-
+    @CrossOrigin("http://localhost:3000")
     @PutMapping("/comedians/{id}")
     public Comedian updateComedian(@PathVariable(value="id")Long comedianId, @RequestBody Comedian comedianDetails) throws ComedianNotFoundException {
         return comedianService.updateComedianById(comedianId, comedianDetails);

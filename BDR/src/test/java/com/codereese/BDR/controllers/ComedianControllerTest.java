@@ -30,7 +30,7 @@ public class ComedianControllerTest {
     public void getComediansLength(){
         ResponseEntity<Comedian[]> comedianResponseEntity = testRestTemplate.getForEntity("/comedians", Comedian[].class);
         Comedian[] comedians = comedianResponseEntity.getBody();
-        assertEquals(3, comedians.length);
+        assertEquals(5, comedians.length);
     }
 
     @Test

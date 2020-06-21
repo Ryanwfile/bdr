@@ -6,7 +6,11 @@ class Charts extends Component {
     }
 
     render(){
-       return <h1>Test Passed</h1>
+       return (
+           <div>
+               I'm a comedian, laugh asshole
+           </div>
+       )
     }
 }
 
