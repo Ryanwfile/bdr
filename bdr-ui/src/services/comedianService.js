@@ -19,8 +19,18 @@ const comedianService = {
     // }
     async fetchComedians(){
         return fetch(SERVER)
+        .then(response => this.handleErrors(response))
         .then(response => response.json())
-        .then(data => console.log(data));
+        .then((data) => {
+            return data;
+        })
+    },
+
+    async handleErrors(response){
+        if(!response.ok){
+            console.error("Error fetching resource with reason: ", response.statusText);
+        }
+        return response;
     }
 }
 

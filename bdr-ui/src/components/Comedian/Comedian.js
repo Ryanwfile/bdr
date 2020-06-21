@@ -4,16 +4,17 @@ import comedianService from '../../services/comedianService.js';
 
 class Comedian extends Component {
     constructor(props){
-        super(props);
-       
+        super(props);    
+        this.state = {
+            comedianList: []
+        }   
     }
    
-    componentDidMount(){
-        this.comedianList =  comedianService.fetchComedians();
-       console.log(this.comedianList.then(resolve => resolve));
-        // this.comedianList.map(comedian => {
-        //     return comedian;
-        // })
+   async componentDidMount(){       
+    const allComedians = await comedianService.fetchComedians();
+       this.setState({
+         comedianList : allComedians
+       })      
     }
 
     render(){
