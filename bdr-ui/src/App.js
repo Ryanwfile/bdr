@@ -1,26 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import Charts from './components/Charts/Charts.js';
 import Comedian from './components/Comedian/Comedian.js';
+import comedianService from './services/comedianService.js';
 import './App.css';
 
-function App() {
-  const nameList = ["Dave Chappelle", "George Carlin", "Richard Pryor", "Jim Gaffigan", "Chris Rock", "Lenny Bruce", "Rodney Dangerfield", "Jerry Seinfeld"];
-  return (
-    <div className="App">
-     
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {/* <Charts></Charts> */}
-        <div className="comedian">
-        {nameList.map(name => {
-        return <Comedian name={name} picture="https://cdn.britannica.com/96/194196-050-90AA3813/Dave-Chappelle-2006.jpg"></Comedian>
-        })}
-        </div>
-       
-       
-      
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      comedianList: []
+    }
+  }
+
+  async componentDidMount() {
+    const allComedians = await comedianService.fetchComedians();
+    this.setState({
+      comedianList: allComedians
+    })
+  }
+
+  render() {
+    console.log(this.state.comedianList);
+    return (
+      <div className="comedian-container">
+        {this.state.comedianList.map(comedian => {
+        return <Comedian name={comedian.name} picture={comedian.img_src}></Comedian>
+      })}
+      </div>
+
+    )
+  }
+
+
 }
 
 export default App;
+

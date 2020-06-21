@@ -20,10 +20,10 @@ const comedianService = {
     async fetchComedians(){
         return fetch(SERVER)
         .then(response => this.handleErrors(response))
-        .then(response => response.json())
-        .then((data) => {
-            return data;
-        })
+        .then(response => response.json());
+        // .then((data) => {
+        //     return data;
+        // })
     },
 
     async handleErrors(response){

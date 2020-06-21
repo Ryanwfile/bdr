@@ -19,6 +19,14 @@ public class ComedianControllerTest {
     private TestRestTemplate testRestTemplate;
 
     @Test
+    @Sql("/comedian_table_populate.sql")
+    public void getComediansLength(){
+        ResponseEntity<Comedian[]> comedianResponseEntity = testRestTemplate.getForEntity("/comedians", Comedian[].class);
+        Comedian[] comedians = comedianResponseEntity.getBody();
+        assertEquals(10, comedians.length);
+    }
+
+    @Test
     @Sql("/getComedianByIdTest.sql")
     public void getComedianById(){
         ResponseEntity<Comedian> comedianResponseEntity = testRestTemplate.getForEntity("/comedians/1", Comedian.class);
@@ -26,19 +34,10 @@ public class ComedianControllerTest {
     }
 
     @Test
-    @Sql("/comedian_table_populate.sql")
-    public void getComediansLength(){
-        ResponseEntity<Comedian[]> comedianResponseEntity = testRestTemplate.getForEntity("/comedians", Comedian[].class);
-        Comedian[] comedians = comedianResponseEntity.getBody();
-        assertEquals(5, comedians.length);
-    }
-
-    @Test
     @Sql("/createComedianTest.sql")
     public void saveComedian(){
         Comedian comedian = new Comedian();
-        comedian.setFirst_name("Jim");
-        comedian.setLast_name("Gaffigan");
+        comedian.setName("Jim Gaffigan");
         comedian.setImg_src("testdummy");
 
         HttpEntity<Comedian> comedianHttpEntity = new HttpEntity<>(comedian);
@@ -51,7 +50,6 @@ public class ComedianControllerTest {
     public void updateComedianReturnsTrue(){
         Comedian updatedComedian = new Comedian();
         updatedComedian.setComedianId(1l);
-
     }
 
 //    @Test

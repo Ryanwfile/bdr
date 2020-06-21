@@ -33,8 +33,7 @@ public class ComedianService {
 
     public Comedian updateComedianById(@PathVariable(value="id") Long comedianId, @RequestBody Comedian comedianDetails) throws ComedianNotFoundException {
         Comedian comedian = comedianRepo.findById(comedianId).orElseThrow(() -> new ComedianNotFoundException(comedianId));
-        comedian.setFirst_name(comedianDetails.getFirst_name());
-        comedian.setLast_name(comedianDetails.getLast_name());
+        comedian.setName(comedianDetails.getName());
         comedian.setImg_src(comedianDetails.getImg_src());
         Comedian updatedComedian = comedianRepo.save(comedian);
         return updatedComedian;
