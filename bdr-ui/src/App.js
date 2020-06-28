@@ -21,8 +21,8 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.comedianList);
-    return (
+    console.log("Hello");
+        return (
       <div className="comedian-container">
         {this.state.comedianList.map(comedian => {
         return <Comedian name={comedian.name} picture={comedian.img_src}></Comedian>
