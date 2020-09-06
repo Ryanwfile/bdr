@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import Charts from './components/Charts/Charts.js';
-import Comedian from './components/Comedian/Comedian.js';
+import ComedianList from './components/ComedianList/ComedianList.js';
 import comedianService from './services/comedianService.js';
 import './App.css';
 
@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <div className="comedian-container">
         {this.state.comedianList.map(comedian => {
-        return <Comedian name={comedian.name} picture={comedian.img_src}></Comedian>
+        return <ComedianList name={comedian.name} picture={comedian.img_src}></ComedianList>
       })}
       </div>
 

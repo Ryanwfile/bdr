@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import './Comedian.css';
+import './ComedianList.css';
 import comedianService from '../../services/comedianService.js';
+import Popover from '@material-ui/core/Popover';
 
-class Comedian extends Component {
+class ComedianList extends Component {
     constructor(props){
         super(props);    
         this.state = {
@@ -19,12 +20,20 @@ class Comedian extends Component {
 
     render(){
         return (
-            <div className="comedianWrapper">
+            <div className="comedianListWrapper">
                 <p>{this.props.name}</p>
+                {/* <Popover anchorOrigin = {{
+                    vertical:'top',
+                    horizontal:'left'
+                }}
+                transformOrigin={{
+                    vertical:'top',
+                    horizontal:'left'
+                }}>Hey, I'm a popover, whats that.</Popover> */}
                 <img className="comedian-picture" src={this.props.picture}/>
             </div>
         )
     }
 }
 
-export default Comedian;
+export default ComedianList;
