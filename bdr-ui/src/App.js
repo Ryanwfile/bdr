@@ -4,6 +4,7 @@ import Charts from './components/Charts/Charts.js';
 import ComedianList from './components/ComedianList/ComedianList.js';
 import comedianService from './services/comedianService.js';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -21,14 +22,24 @@ class App extends Component {
   }
 
   render() {
-    console.log("Hello");
-        return (
-      <div className="comedian-container">
-        {this.state.comedianList.map(comedian => {
-        return <ComedianList name={comedian.name} picture={comedian.img_src}></ComedianList>
-      })}
-      </div>
+    console.log(this.state.comedianList);
+    return (
+      <Router>
+        <div className="comedian-container">
+          <Link to="/about">
+          {this.state.comedianList.map(comedian => {
+            return (
 
+              <ComedianList name={comedian.name} picture={comedian.img_src}></ComedianList>
+
+            )
+          })}
+          </Link>
+          <Switch>
+            <Route path="/about"><div>Look its a me, your about page</div> </Route>
+          </Switch>
+        </div>
+      </Router>
     )
   }
 
