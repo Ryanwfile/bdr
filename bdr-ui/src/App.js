@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import Charts from './components/Charts/Charts.js';
-import Comedian from './components/Comedian/Comedian.js';
 import comedianService from './services/comedianService.js';
 import './App.css';
 import ComedianList from './components/ComedianList/ComedianList';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ComedianHome from './components/ComedianHome/ComedianHome.js';
 
 class App extends Component {
   constructor(props) {
@@ -23,9 +22,24 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app-comedian-container">
-        <ComedianList comedianList={this.state.comedianList}/>
-      </div>
+      <Router>
+        <Link to="/">
+          Home
+        </Link>
+        <Link to="/comedianSelected">
+          I'm a comedian, laugh asshole
+        </Link>
+        <Switch>
+          <Route path="/">
+            <div className="app-comedian-container">
+              <ComedianList comedianList={this.state.comedianList} />
+            </div>
+          </Route>
+          <Route path="/comedianSelected">
+            <ComedianHome />
+          </Route>
+        </Switch>
+      </Router>
     )
   }
 }
