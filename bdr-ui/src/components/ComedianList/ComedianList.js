@@ -16,16 +16,21 @@ class ComedianList extends Component {
         const allComedians = await comedianService.fetchComedians();
         this.setState({
             comedianList: allComedians
-        })
+        });
     }
     render() {
         return (
-            <Router>
-                <div className="comedianListWrapper">
-                    <p>{this.props.name}</p>
-                    <img className="comedian-picture" src={this.props.picture}/>
-                </div>
-            </Router>
+            /**<div className="comedian-container">
+         {this.state.comedianList.map(comedian => {
+         return <ComedianList name={comedian.name} picture={comedian.img_src}></ComedianList>
+       })}
+       </div> */
+            <div className="comedianListWrapper">
+                {this.props.comedianList.map(comedian => {
+                    return <Comedian name={comedian.name} picture={comedian.img_src}></Comedian>
+                })}
+            </div>
+
         )
     }
 }
