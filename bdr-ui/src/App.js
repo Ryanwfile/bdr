@@ -22,11 +22,11 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.comedianList);
+   
     return (
-      <Router>
+     
         <div className="comedian-container">
-          <Link to="/about">
+         
           {this.state.comedianList.map(comedian => {
             return (
 
@@ -34,12 +34,9 @@ class App extends Component {
 
             )
           })}
-          </Link>
-          <Switch>
-            <Route path="/about"><div>Look its a me, your about page</div> </Route>
-          </Switch>
+       
         </div>
-      </Router>
+   
     )
   }
 

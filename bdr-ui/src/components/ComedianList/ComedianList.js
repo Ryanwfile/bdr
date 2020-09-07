@@ -20,12 +20,12 @@ class ComedianList extends Component {
     }
     render() {
         return (
-            <Router>
+           
                 <div className="comedianListWrapper">
                     <p>{this.props.name}</p>
                     <img className="comedian-picture" src={this.props.picture}/>
                 </div>
-            </Router>
+          
         )
     }
 }
